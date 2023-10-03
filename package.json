@@ -1,0 +1,21 @@
+{
+  "name": "unit-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/src/index.js",
+    "dev": "nodemon ./src/index.ts",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "latest",
+    "ts-node": "latest",
+    "typedoc": "^0.25.1",
+    "typescript": "latest"
+  }
+}
