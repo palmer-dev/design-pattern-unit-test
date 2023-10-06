@@ -30,3 +30,42 @@ exports.calculateFactorial = (n) => {
 
     return result;
 }
+
+exports.transformUsers = (users) => {
+
+    // CHECK IF ARRAY
+    if (!Array.isArray(users)) {
+        throw new Error('Users must be provided.');
+    }
+
+    // CHECK NOT TOO LONG
+    if (users.length > 8) {
+        throw new Error('Too many users provided.');
+    }
+
+    // CHECK IF ALL OBJECTS ARE EFFECTIVELY USERS OBJECT {id:string, body: {userName:string, userAge:number}}
+    const listExistingId = [];
+    users.forEach(user => {
+        const keyOfUser = Object.keys(user);
+        if (!(keyOfUser.includes("id") && keyOfUser.includes("body"))) {
+            throw new Error("Users must be provided.");
+        }
+
+        if (listExistingId.includes(user.id)) {
+            throw new Error("Duplicated user id.");
+        }
+        listExistingId.push(user.id);
+
+        const bodyKeyOfUser = Object.keys(user.body);
+        if (!(bodyKeyOfUser.includes("userName") && bodyKeyOfUser.includes("userAge"))) {
+            throw new Error("Users must be provided.")
+        }
+    })
+
+    // PROCESS USERS
+    return users.map(user => {
+        return {id: user.id, name: user.body.userName, age: user.body.userAge}
+    })
+}
+
+// exports.transformUsers(123);
